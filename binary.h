@@ -10,23 +10,23 @@ class boolean {
         boolean(int size) {
             // TODO
         }
-        
+
         void bitOn(int position) {
             // TODO
         }
-             
+
         void bitOff(int position) {
             // TODO
         }
-             
+
         bool operator[](int position) {
             // TODO
         }
-    
-        void clear() {    
+
+        void clear() {
             // TODO
         }
-             
+
         ~boolean() {
             // TODO
         }
