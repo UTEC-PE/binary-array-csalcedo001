@@ -2,34 +2,37 @@
 #define BOOLEAN_H
 
 class boolean {
-    private:
-        char* array;
-        int size;
-    
-    public:
-        boolean(int size) {
-            // TODO
-        }
+  private:
+    char* array;
+    int size;
 
-        void bitOn(int position) {
-            // TODO
-        }
+  public:
+    boolean(int size) : size(size) {
+      this->array = new char[(int) size / 8 + 1] ();
+    }
 
-        void bitOff(int position) {
-            // TODO
-        }
+    void bitOn(int position) {
+      int arrayIndex = position / 8;
+      this->array[arrayIndex] = this->array[arrayIndex] | (1 << (position % 8));
+    }
 
-        bool operator[](int position) {
-            // TODO
-        }
+    void bitOff(int position) {
+      int arrayIndex = position / 8;
+      this->array[arrayIndex] = this->array[arrayIndex] & ~(1 << (position % 8));
+    }
 
-        void clear() {
-            // TODO
-        }
+    inline bool operator[](int position) const {
+      return this->array[(int) position / 8] & (1 << (position % 8));
+    }
 
-        ~boolean() {
-            // TODO
-        }
+    void clear() {
+      delete [] this->array;
+      size = 0;
+    }
+
+    ~boolean() {
+      this->clear();
+    }
 };
 
 #endif
