@@ -11,14 +11,12 @@ class boolean {
       this->array = new char[(int) size / 8 + 1] ();
     }
 
-    void bitOn(int position) {
-      int arrayIndex = position / 8;
-      this->array[arrayIndex] = this->array[arrayIndex] | (1 << (position % 8));
+    inline void bitOn(int position) {
+      this->array[position / 8] |= (1 << (position % 8));
     }
 
-    void bitOff(int position) {
-      int arrayIndex = position / 8;
-      this->array[arrayIndex] = this->array[arrayIndex] & ~(1 << (position % 8));
+    inline void bitOff(int position) {
+      this->array[position / 8] &= ~(1 << (position % 8));
     }
 
     inline bool operator[](int position) const {
@@ -26,12 +24,19 @@ class boolean {
     }
 
     void clear() {
-      delete [] this->array;
-      size = 0;
+      for (int i = 0, l = size / 8; i < l; i++)
+        array[i] = 0;
+    }
+
+    void print() {
+      for (int i = 0, l = size; i < l; i++)
+        std::cout << (*this)[i];
+
+      std::cout << std::endl;
     }
 
     ~boolean() {
-      this->clear();
+      delete [] array;
     }
 };
 
